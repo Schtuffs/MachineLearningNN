@@ -6,9 +6,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		FileManager fm = new FileManager("trainingData.txt");
-		ArrayList<DataManager> points = fm.read();
+		ArrayList<DataManager> points = fm.read(true);
 		for (DataManager dm : points) {
-			System.out.println("X: " + dm.getX() + ", Y: " + dm.getY() + ", Z: " + dm.getZ());
+			System.out.println(dm);
 		}
 	}
 }

@@ -11,14 +11,14 @@ public class FileManager {
 		this.mFilename = filename;
 	}
 	
-	public ArrayList<DataManager> read() {
+	public ArrayList<DataManager> read(boolean readOrientation) {
 		ArrayList<DataManager> dataPoints = new ArrayList<>();
 		try {
 			File file = new File(this.mFilename);
 			Scanner reader = new Scanner(file);
 			while(reader.hasNextLine()) {
 				String[] data = reader.nextLine().split(",");
-				DataManager dm = this.parse(data);
+				DataManager dm = this.parse(data, readOrientation);
 				if (dm != null) {
 					dataPoints.add(dm);
 				}
@@ -32,13 +32,20 @@ public class FileManager {
 		return dataPoints;
 	}
 	
-	private DataManager parse(String[] data) {
+	private DataManager parse(String[] data, boolean readOrientation) {
 		DataManager dm;
 		try {
 			double x = Double.parseDouble(data[0]);
 			double y = Double.parseDouble(data[1]);
 			double z = Double.parseDouble(data[2]);
-			dm = new DataManager(x, y, z);
+			int orientation = 0;
+			if (readOrientation) {
+				orientation = Integer.parseInt(data[3]);
+				dm = new DataManager(x, y, z, orientation);
+			}
+			else {
+				dm = new DataManager(x, y, z);
+			}
 		}
 		catch (NumberFormatException e) {
 			System.out.println("String could not be parsed to number...");
