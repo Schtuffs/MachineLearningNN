@@ -93,6 +93,24 @@ public class DataManager {
 		return "Not a valid orientation";
 	}
 	
+	public boolean compare(DataManager dm) {
+		if (this.mX != dm.getX()) {
+			return false;
+		}
+		if (this.mY != dm.getY()) {
+			return false;
+		}
+		if (this.mZ != dm.getZ()) {
+			return false;
+		}
+		
+		if (this.getOrientation().compareTo(dm.getOrientation()) != 0) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 	@Override
 	public String toString() {
 		return "X: " + this.getX() + ", Y: " + this.getY() + ", Z: " + this.getZ() + ", Orientation: " + this.getOrientation();

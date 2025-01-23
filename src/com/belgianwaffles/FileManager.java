@@ -38,6 +38,7 @@ public class FileManager {
 			double x = Double.parseDouble(data[0]);
 			double y = Double.parseDouble(data[1]);
 			double z = Double.parseDouble(data[2]);
+			
 			int orientation = 0;
 			if (readOrientation) {
 				orientation = Integer.parseInt(data[3]);
