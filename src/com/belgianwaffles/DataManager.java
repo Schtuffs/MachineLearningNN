@@ -7,20 +7,23 @@ public class DataManager {
 	private double mX, mY, mZ;
 	private int mOrientation;
 	
-	private static final Map<Integer, String> mOrientationMap = new HashMap<>();
+	public static final int INVALID_ORIENTATION = 0; 
+	public static final Map<Integer, String> OrientationMap = new HashMap<>();
 	static {
-		DataManager.mOrientationMap.put(1, "Face up");
-		DataManager.mOrientationMap.put(2, "Face down");
-		DataManager.mOrientationMap.put(3, "Portrait");
-		DataManager.mOrientationMap.put(4, "Portrait upside down");
-		DataManager.mOrientationMap.put(5, "Landscape left");
-		DataManager.mOrientationMap.put(6, "Landscape right");
+		DataManager.OrientationMap.put(DataManager.INVALID_ORIENTATION, "Invalid");
+		DataManager.OrientationMap.put(1, "Face up");
+		DataManager.OrientationMap.put(2, "Face down");
+		DataManager.OrientationMap.put(3, "Portrait");
+		DataManager.OrientationMap.put(4, "Portrait upside down");
+		DataManager.OrientationMap.put(5, "Landscape left");
+		DataManager.OrientationMap.put(6, "Landscape right");
 	}
 	
 	public DataManager() {
 		this.mX = 0;
 		this.mY = 0;
 		this.mZ = 0;
+		this.mOrientation = DataManager.INVALID_ORIENTATION;
 	}
 	
 	public DataManager(double x, double y, double z) {
@@ -42,8 +45,7 @@ public class DataManager {
 		else {
 			this.mZ = 0;
 		}
-		
-		this.determineOrientation();
+		this.mOrientation = DataManager.INVALID_ORIENTATION;
 	}
 	
 	public DataManager(double x, double y, double z, int orientation) {
@@ -66,12 +68,12 @@ public class DataManager {
 			this.mZ = 0;
 		}
 
-		this.mOrientation = orientation;
-	}
-	
-	private void determineOrientation() {
-		// Default to orientation 1
-		this.mOrientation = 1;
+		if (0 < orientation && orientation <= 6) {
+			this.mOrientation = orientation;
+		}
+		else {
+			this.mOrientation = DataManager.INVALID_ORIENTATION;
+		}
 	}
 
 	public double getX() {
@@ -86,11 +88,16 @@ public class DataManager {
 		return mZ;
 	}
 	
-	public String getOrientation() {
-		if (DataManager.mOrientationMap.containsKey(this.mOrientation)) {
-			return DataManager.mOrientationMap.get(this.mOrientation);
+	public int getOrientation() {
+		return this.mOrientation;
+	}
+	
+	public boolean setOrientation(int newOrientation) {
+		if (0 <= newOrientation && newOrientation <= 6) {
+			this.mOrientation = newOrientation;
+			return true;
 		}
-		return "Not a valid orientation";
+		return false;
 	}
 	
 	public boolean compare(DataManager dm) {
@@ -104,7 +111,7 @@ public class DataManager {
 			return false;
 		}
 		
-		if (this.getOrientation().compareTo(dm.getOrientation()) != 0) {
+		if (this.mOrientation != dm.mOrientation) {
 			return false;
 		}
 		
@@ -113,6 +120,7 @@ public class DataManager {
 	
 	@Override
 	public String toString() {
-		return "X: " + this.getX() + ", Y: " + this.getY() + ", Z: " + this.getZ() + ", Orientation: " + this.getOrientation();
+		String ori = DataManager.OrientationMap.get(this.mOrientation);
+		return "X: " + this.mX+ ", Y: " + this.mY + ", Z: " + this.mZ + ", Orientation: " + ori;
 	}
 }
