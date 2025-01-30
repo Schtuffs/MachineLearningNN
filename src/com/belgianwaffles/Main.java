@@ -6,11 +6,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		// Setup data structures
-		FileManager fm = new FileManager("trainingData.txt");
-		ArrayList<DataManager> trainingData = fm.read(true);
-		ArrayList<DataManager> testingDataUnknown = fm.read(false);
-		ArrayList<DataManager> testingDataKnown = fm.read(true);
-		ArrayList<DataManager> standardDataUnknown = fm.read(false);
+		ArrayList<DataManager> trainingData = FileManager.read("trainingData.txt", true);
+		ArrayList<DataManager> testingDataUnknown = FileManager.read("testingData.txt", false);
+		ArrayList<DataManager> testingDataKnown = FileManager.read("testingData.txt", true);
+		ArrayList<DataManager> standardDataUnknown = FileManager.read("unknownData.txt", false);
 		
 		// Test the program with the testing data
 		Classifier nnClassifier = new NNClassifier(trainingData);
@@ -21,14 +20,14 @@ public class Main {
 			
 			// Check if the data is classified correctly
 			if (testingDataUnknown.get(i).compare(testingDataKnown.get(i))) {
-				System.out.println("Known: " + testingDataKnown.get(i) + "\nunknown: " + testingDataUnknown.get(i));
 				correctClassify++;
 			}
 			else {
 				incorrectClassify++;
 			}
 		}
-		System.out.println("Correct Classifications: " + correctClassify + ", incorrect classifications: " + incorrectClassify);
+		System.out.println("Testing data");
+		System.out.println("Correct Classifications: " + correctClassify + ", incorrect classifications: " + incorrectClassify + "\n");
 		
 		// Run through the unknown data and test it
 		for (int i = 0; i < standardDataUnknown.size(); i++) {
