@@ -10,13 +10,16 @@ public class Main {
 		ArrayList<DataManager> testingDataUnknown = FileManager.read("testingData.txt", false);
 		ArrayList<DataManager> testingDataKnown = FileManager.read("testingData.txt", true);
 		ArrayList<DataManager> standardDataUnknown = FileManager.read("unknownData.txt", false);
+		int K = 3;
 		
 		// Test the program with the testing data
 		Classifier nnClassifier = new NNClassifier(trainingData);
+		Classifier knnClassifier = new KNNClassifier(trainingData, K);
 		int correctClassify = 0, incorrectClassify = 0;
 		for (int i = 0; i < testingDataUnknown.size(); i++) {
 			// Classify data point
-			testingDataUnknown.get(i).setOrientation(nnClassifier.classify(testingDataUnknown.get(i)));
+			//testingDataUnknown.get(i).setOrientation(nnClassifier.classify(testingDataUnknown.get(i)));
+			testingDataUnknown.get(i).setOrientation(knnClassifier.classify(testingDataUnknown.get(i)));
 			
 			// Check if the data is classified correctly
 			if (testingDataUnknown.get(i).compare(testingDataKnown.get(i))) {
