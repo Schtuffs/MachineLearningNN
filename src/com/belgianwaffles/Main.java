@@ -11,15 +11,12 @@ public class Main {
 	public static void main(String[] args) {
 		// Setup data structures
 		ArrayList<DataManager> trainingData = FileManager.read("trainingData.txt", true);
-		ArrayList<DataManager> testingDataUnknown = FileManager.read("testingData.txt", false);
-		ArrayList<DataManager> testingDataKnown = FileManager.read("testingData.txt", true);
-		ArrayList<DataManager> standardDataUnknown = FileManager.read("unknownData.txt", false);
 		int K = 3;
 		
 		// Test the program with the testing data
 		Classifier nnClassifier = new NNClassifier(trainingData);
 		Classifier knnClassifier = new KNNClassifier(trainingData, K);
-		// Classifier anotherClassifier = new AnotherClassifier(trainingData);
+		 Classifier anotherClassifier = new AnotherClassifier(trainingData);
 
 		// Main loop
 		Scanner input = new Scanner(System.in);
@@ -50,6 +47,9 @@ public class Main {
 					userInput = CODE_INVALID;
 				}
 			} while (userInput == CODE_INVALID);
+			if (userInput == CODE_EXIT) {
+				break;
+			}
 			
 			// Switch for changing classifier
 			switch (userInput) {
@@ -60,48 +60,34 @@ public class Main {
 					currentClassifier = knnClassifier;
 					break;
 				case 3:
-					// currentClassifier = anotherClassifier;
+					 currentClassifier = anotherClassifier;
 					break;
 			}
 			
+			// Get filename input
+			System.out.print("Enter a filename to classify: ");
+			input.nextLine();
+			String file = input.nextLine();
+			ArrayList<DataManager> data = FileManager.read(file, false);
+			
 			// Call classify method
-			if (currentClassifier != null) {
-				classify(currentClassifier, testingDataUnknown, testingDataKnown, standardDataUnknown);
-			}
+			classify(currentClassifier, data);
 		} while (userInput != CODE_EXIT);
 		input.close();
 	}
 
-	private static void classify(Classifier classifier, ArrayList<DataManager> testingDataUnknown, ArrayList<DataManager> testingDataKnown, ArrayList<DataManager> standardDataUnknown) {
+	private static void classify(Classifier classifier, ArrayList<DataManager> data) {
 		// Ensure no null
-		if (classifier == null || testingDataUnknown == null || testingDataKnown == null || standardDataUnknown == null) {
+		if (classifier == null || data == null) {
 			System.out.println("A parameter for classifying was null");
 			return;
 		}
-
-		// Tracks classifications
-		int correctClassify = 0, incorrectClassify = 0;
-		for (int i = 0; i < testingDataUnknown.size(); i++) {
-			// Classify data point
-			testingDataUnknown.get(i).setOrientation(classifier.classify(testingDataUnknown.get(i)));
-
-			// Check if the data is classified correctly
-			if (testingDataUnknown.get(i).compare(testingDataKnown.get(i))) {
-				correctClassify++;
-			}
-			else {
-				incorrectClassify++;
-			}
-		}
-		// Testing data results
-		System.out.println("Testing data with Classifier");
-		System.out.println("Correct Classifications: " + correctClassify + ", incorrect classifications: " + incorrectClassify + "\n");
-
+		
 		// Run through the unknown data and test it
-		for (int i = 0; i < standardDataUnknown.size(); i++) {
+		for (int i = 0; i < data.size(); i++) {
 			// Classify data point
-			standardDataUnknown.get(i).setOrientation(classifier.classify(standardDataUnknown.get(i)));
-			System.out.println("Unknown data:  " + standardDataUnknown.get(i));
+			data.get(i).setOrientation(classifier.classify(data.get(i)));
 		}
+		FileManager.write("result.txt", data);
 	}
 }

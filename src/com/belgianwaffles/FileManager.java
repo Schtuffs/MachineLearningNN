@@ -1,11 +1,26 @@
 package com.belgianwaffles;
 
 import java.util.ArrayList;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 
 public class FileManager {
+	public static boolean write(String filename, ArrayList<DataManager> data) {
+		PrintWriter file;
+		try {
+			file = new PrintWriter(filename);
+			for (DataManager dm : data) {
+				file.write(dm.toString() + "\n");
+			}
+		}
+		catch (FileNotFoundException e) {
+			System.out.println("Failed to create file");
+			return false;
+		}
+		file.close();
+		return true;
+	}
+	
 	public static ArrayList<DataManager> read(String filename, boolean readOrientation) {
 		// Create datapoint list
 		ArrayList<DataManager> dataPoints = new ArrayList<>();

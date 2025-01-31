@@ -3,7 +3,6 @@ package com.belgianwaffles;
 import java.util.ArrayList;
 
 public class NNClassifier extends Classifier {
-	private ArrayList<DataManager> mTrainData;
 	
 	public NNClassifier(ArrayList<DataManager> trainingData) {
 		this.mTrainData = trainingData;

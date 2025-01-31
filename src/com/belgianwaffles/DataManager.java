@@ -121,6 +121,6 @@ public class DataManager {
 	@Override
 	public String toString() {
 		String ori = DataManager.OrientationMap.get(this.mOrientation);
-		return "X: " + this.mX+ ", Y: " + this.mY + ", Z: " + this.mZ + ", Orientation: " + ori;
+		return this.mX+ "," + this.mY + "," + this.mZ + "," +this.mOrientation + "," + ori;
 	}
 }

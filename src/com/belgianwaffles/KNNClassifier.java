@@ -3,7 +3,6 @@ package com.belgianwaffles;
 import java.util.ArrayList;
 
 public class KNNClassifier extends Classifier {
-	private ArrayList<DataManager> mTrainData;
 	private int K;
 	
 	public KNNClassifier(ArrayList<DataManager> trainingData, int k) {

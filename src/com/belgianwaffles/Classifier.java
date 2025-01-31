@@ -1,6 +1,11 @@
 package com.belgianwaffles;
 
+import java.util.ArrayList;
+
 public abstract class Classifier {
+
+	protected ArrayList<DataManager> mTrainData;
+	
 	public abstract int classify(DataManager data);
 	
 	protected double dist(DataManager dm1, DataManager dm2) {
