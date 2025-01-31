@@ -5,8 +5,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-	public static final int CODE_EXIT	= 0;
-	public static final int CODE_INVALID= -1;
+	public static final int CODE_EXIT		= 0;
+	public static final int CODE_INVALID	=-1;
 
 	public static void main(String[] args) {
 		// Setup data structures
@@ -60,7 +60,7 @@ public class Main {
 					currentClassifier = knnClassifier;
 					break;
 				case 3:
-					 currentClassifier = anotherClassifier;
+					currentClassifier = anotherClassifier;
 					break;
 			}
 			

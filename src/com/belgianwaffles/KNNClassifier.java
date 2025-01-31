@@ -10,8 +10,13 @@ public class KNNClassifier extends Classifier {
 		this.K = k;
 		
 		// ensure k is not set to a value less than 1
-		if (k<1) {
-			this.K=1;
+		if (this.K < 1) {
+			this.K = 1;
+		}
+
+		// Ensure K cannot be larger than dataset
+		if (this.K > this.mTrainData.size()) {
+			this.K = this.mTrainData.size();
 		}
 	}
 
