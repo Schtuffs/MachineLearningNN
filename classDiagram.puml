@@ -1,0 +1,57 @@
+@startuml NNClassifier Class Diagram
+class NNClassifier {
+	- mTrainData : ArrayList<DataManager>
+	+ NNClassifier(ArrayList<DataManager>)
+	+ classify(DataManager) : int
+}
+class KNNClassifier {
+    - k : int
+    + KNNClassifier(ArrayList<DataManager>, int)
+    + classify(DataManager) : int
+}
+class FileManager {
+    + write(String, ArrayList<DataManager>) : bool
+    + read(String, bool) : ArrayList<DataManager>
+    - parse(String[], bool) : DataManager
+}
+class DataManager {
+    - mX : double
+    - mY : double
+    - mZ : double
+    - mOrientation : int
+    + INVALID_ORIENTATION : int
+    + OrientationMap : HashMap<Integer, String>
+    + DataManager()
+    + DataManager(double, double, double)
+    + DataManager(double, double, double, int)
+    + getX() : double
+    + getY() : double
+    + getZ() : double
+    + getOrientation() : int
+    + setOrientation(int) : bool
+    + compare(DataManager) : bool
+    + toString() : String
+}
+abstract Classifier {
+    # mTrainData : ArrayList<DataManager>
+    + classify(DataManager) : int
+    # dist(DataManager, DataManager) : double
+}
+class AnotherClassifier {
+    + AnotherClassifier(ArrayList<DataManager>)
+    + classify(DataManager) : int
+}
+class Main {
+    + CODE_EXIT : int
+    + CODE_INVALID : int
+    + main(String[]) : void
+    - classify(Classifier, Arraylist<DataManager>) : void
+}
+AnotherClassifier --> Classifier
+NNClassifier --> Classifier
+KNNClassifier --> Classifier
+Main -- Classifier
+Main -- FileManager
+Main -- DataManager
+Classifier -- DataManager
+@enduml
