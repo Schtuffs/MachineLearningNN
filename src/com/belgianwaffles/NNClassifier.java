@@ -8,6 +8,11 @@ public class NNClassifier extends Classifier {
 		this.mTrainData = trainingData;
 	}
 
+	/**
+	 * Classify a given data point to one of the orientations in the training data set.
+	 * @param data the point to classify
+	 * @return the orientation of the closest known point
+	 */
 	@Override
 	public int classify(DataManager data) {
 		// Keeps track of nearest-neighbour

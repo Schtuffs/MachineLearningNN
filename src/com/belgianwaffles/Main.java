@@ -16,7 +16,7 @@ public class Main {
 		// Test the program with the testing data
 		Classifier nnClassifier = new NNClassifier(trainingData);
 		Classifier knnClassifier = new KNNClassifier(trainingData, K);
-		 Classifier anotherClassifier = new AnotherClassifier(trainingData);
+		Classifier anotherClassifier = new AnotherClassifier(trainingData);
 
 		// Main loop
 		Scanner input = new Scanner(System.in);
@@ -75,6 +75,17 @@ public class Main {
 		} while (userInput != CODE_EXIT);
 		input.close();
 	}
+
+/**
+ * Classifies a list of data points using the provided classifier.
+ *
+ * @param classifier the classifier to use for classifying data points
+ * @param data the list of data points to be classified
+ * 
+ * Ensures that neither parameter is null before proceeding. 
+ * Each data point's orientation is set based on the classification result. 
+ * The results are written to "result.txt".
+ */
 
 	private static void classify(Classifier classifier, ArrayList<DataManager> data) {
 		// Ensure no null

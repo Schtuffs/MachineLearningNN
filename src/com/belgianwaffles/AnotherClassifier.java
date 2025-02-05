@@ -8,6 +8,11 @@ public class AnotherClassifier extends Classifier {
 		System.out.println("AnotherClassifier constructor");
 	}
 
+	/**
+	 * Classify a given data point to one of the orientations in the training data set.
+	 * @param data the point to classify
+	 * @return the orientation of the closest known point
+	 */
 	@Override
 	public int classify(DataManager data) {
 		System.out.println("AnotherClassifier.classify(data)");

@@ -5,6 +5,12 @@ import java.io.*;
 import java.util.Scanner;
 
 public class FileManager {
+	/**
+	 * Writes the given data to a file
+	 * @param filename the file to write to
+	 * @param data the data to write
+	 * @return true if the write was successful, false if not
+	 */
 	public static boolean write(String filename, ArrayList<DataManager> data) {
 		PrintWriter file;
 		try {
@@ -21,6 +27,12 @@ public class FileManager {
 		return true;
 	}
 	
+	/**
+	 * Reads the given file and returns an arraylist of datapoints.
+	 * @param filename the file to read
+	 * @param readOrientation whether to read the orientation as well
+	 * @return an arraylist of datapoints
+	 */
 	public static ArrayList<DataManager> read(String filename, boolean readOrientation) {
 		// Create datapoint list
 		ArrayList<DataManager> dataPoints = new ArrayList<>();
@@ -48,6 +60,12 @@ public class FileManager {
 		return dataPoints;
 	}
 	
+	/**
+	 * Parse a string array into a datapoint.
+	 * @param data the string array to parse
+	 * @param readOrientation whether to read the orientation as well
+	 * @return a datapoint, or null if the string could not be parsed into a number.
+	 */
 	private static DataManager parse(String[] data, boolean readOrientation) {
 		DataManager dm;
 		try {

@@ -76,22 +76,46 @@ public class DataManager {
 		}
 	}
 
+/**
+ * Retrieves the X-coordinate of the data point.
+ * @return the current X-coordinate as a double
+ */
+
 	public double getX() {
 		return mX;
 	}
 	
+/**
+ * Retrieves the Y-coordinate of the data point.
+ * @return the current Y-coordinate as a double
+ */
 	public double getY() {
 		return mY;
 	}
 	
+/**
+ * Retrieves the Z-coordinate of the data point.
+ * @return the current Z-coordinate as a double
+ */
+
 	public double getZ() {
 		return mZ;
 	}
 	
+/**
+ * Retrieves the orientation of the data point.
+ * @return the current orientation as an integer
+ */
+
 	public int getOrientation() {
 		return this.mOrientation;
 	}
 	
+	/**
+	 * Sets the orientation of the data point, if the new orientation is in range.
+	 * @param newOrientation the new orientation to set
+	 * @return true if the orientation was set, false otherwise
+	 */
 	public boolean setOrientation(int newOrientation) {
 		if (0 <= newOrientation && newOrientation <= 6) {
 			this.mOrientation = newOrientation;
@@ -100,6 +124,11 @@ public class DataManager {
 		return false;
 	}
 	
+	/**
+	 * Compare this DataManager with another one.
+	 * @param dm the other DataManager
+	 * @return true if the two DataManagers are equal, false otherwise
+	 */
 	public boolean compare(DataManager dm) {
 		if (this.mX != dm.getX()) {
 			return false;
@@ -118,6 +147,10 @@ public class DataManager {
 		return true;
 	}
 	
+	/**
+	 * Return a string representation of this DataManager in the format x,y,z,orientation,nameOfOrientation
+	 * @return a string representation of this DataManager
+	 */
 	@Override
 	public String toString() {
 		String ori = DataManager.OrientationMap.get(this.mOrientation);
