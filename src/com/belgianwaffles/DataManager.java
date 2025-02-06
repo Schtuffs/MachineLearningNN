@@ -20,6 +20,8 @@ public class DataManager {
 	}
 	
 	public DataManager() {
+		
+		// blank initialization 
 		this.mX = 0;
 		this.mY = 0;
 		this.mZ = 0;
@@ -27,18 +29,24 @@ public class DataManager {
 	}
 	
 	public DataManager(double x, double y, double z) {
+		
+		// set x value if given is valid, otherwise set it to 0
 		if (-1 <= x && x <= 1) {
 			this.mX = x;
 		}
 		else {
 			this.mX = 0;
 		}
+		
+		// set y value if given is valid, otherwise set it to 0
 		if (-1 <= y && y <= 1) {
 			this.mY = y;
 		}
 		else {
 			this.mY = 0;
 		}
+		
+		// set z value if given is valid, otherwise set it to 0
 		if (-1 <= z && z <= 1) {
 			this.mZ = z;
 		}
@@ -49,18 +57,24 @@ public class DataManager {
 	}
 	
 	public DataManager(double x, double y, double z, int orientation) {
+		
+		// set x value if given is valid, otherwise set it to 0
 		if (-1 <= x && x <= 1) {
 			this.mX = x;
 		}
 		else {
 			this.mX = 0;
 		}
+		
+		// set y value if given is valid, otherwise set it to 0
 		if (-1 <= y && y <= 1) {
 			this.mY = y;
 		}
 		else {
 			this.mY = 0;
 		}
+		
+		// set z value if given is valid, otherwise set it to 0
 		if (-1 <= z && z <= 1) {
 			this.mZ = z;
 		}
@@ -68,6 +82,7 @@ public class DataManager {
 			this.mZ = 0;
 		}
 
+		// set orientation if given is valid, otherwise set it to invalid
 		if (0 < orientation && orientation <= 6) {
 			this.mOrientation = orientation;
 		}
@@ -117,6 +132,8 @@ public class DataManager {
 	 * @return true if the orientation was set, false otherwise
 	 */
 	public boolean setOrientation(int newOrientation) {
+		
+		// set the orientation to new orientation if its within the set key values 
 		if (0 <= newOrientation && newOrientation <= 6) {
 			this.mOrientation = newOrientation;
 			return true;
@@ -130,20 +147,28 @@ public class DataManager {
 	 * @return true if the two DataManagers are equal, false otherwise
 	 */
 	public boolean compare(DataManager dm) {
+		
+		// compare x values
 		if (this.mX != dm.getX()) {
 			return false;
 		}
+		
+		// compare y values
 		if (this.mY != dm.getY()) {
 			return false;
 		}
+		
+		// compare z values
 		if (this.mZ != dm.getZ()) {
 			return false;
 		}
 		
+		// compare orientations
 		if (this.mOrientation != dm.mOrientation) {
 			return false;
 		}
 		
+		// there are same data piece if all the above is equal
 		return true;
 	}
 	

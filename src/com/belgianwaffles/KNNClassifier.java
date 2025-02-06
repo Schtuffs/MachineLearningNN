@@ -67,10 +67,15 @@ public class KNNClassifier extends Classifier {
 		orientations.add(this.mTrainData.get(indexes[0]).getOrientation());
 		counters.add(1);
 		
+		// loop through closets neighbors to determine orientations and how often they occur
 		for (int i = 1;i<this.K;i++) {
 			
 			boolean match = false;
+			
+			// determine if current neighbors orientation has already been added
 			for (int j = 0;j<orientations.size();j++) {
+				
+				// if orientation has been added, add 1 to its counter 
 				if (orientations.get(j)==this.mTrainData.get(indexes[i]).getOrientation()) {
 					match=true;
 					counters.set(j, counters.get(j) + 1);

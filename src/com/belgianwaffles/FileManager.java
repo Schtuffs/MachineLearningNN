@@ -13,12 +13,16 @@ public class FileManager {
 	 */
 	public static boolean write(String filename, ArrayList<DataManager> data) {
 		PrintWriter file;
+		
+		// attempt to open file and write data to it
 		try {
 			file = new PrintWriter(filename);
 			for (DataManager dm : data) {
 				file.write(dm.toString() + "\n");
 			}
 		}
+		
+		// throw error if file could not be found
 		catch (FileNotFoundException e) {
 			System.out.println("Failed to create file");
 			return false;
