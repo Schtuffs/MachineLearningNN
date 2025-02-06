@@ -2,8 +2,16 @@ package com.belgianwaffles;
 
 import java.util.ArrayList;
 
+/**
+ * Nearest Neighbor classifier that classifies a given data point to one of the orientations in the training data set.
+ * @author Kyle Wagler
+ */
 public class NNClassifier extends Classifier {
 	
+	/**
+	 * Constructor for the Nearest Neighbor classifier that sets the training data.
+	 * @param trainingData the training data
+	 */
 	public NNClassifier(ArrayList<DataManager> trainingData) {
 		this.mTrainData = trainingData;
 	}

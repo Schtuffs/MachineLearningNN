@@ -1,10 +1,19 @@
 package com.belgianwaffles;
 
 import java.util.ArrayList;
-
+/**
+ * K-Nearest Neighbors classifier that classifies a given data point to one of the orientations in the training data set by finding the K nearest neighbors and determines the most common orientation among them.
+ * @author Andrew Abrantes
+ */
 public class KNNClassifier extends Classifier {
 	private int K;
 	
+	/**
+	 * Constructor for the K-Nearest Neighbors classifier.
+	 * 
+	 * @param trainingData the training data set
+	 * @param k the dataset size
+	 */
 	public KNNClassifier(ArrayList<DataManager> trainingData, int k) {
 		this.mTrainData = trainingData;
 		this.K = k;
@@ -20,6 +29,12 @@ public class KNNClassifier extends Classifier {
 		}
 	}
 
+/**
+ * Classify a given data point to one of the orientations in the training data set by finding the K nearest neighbors and determining the most common orientation among them.
+ *
+ * @param data the point to classify
+ * @return the orientation of the most common orientation among the K nearest neighbors
+ */
 	@Override
 	public int classify(DataManager data) {
 		// Keeps track of nearest-neighbour

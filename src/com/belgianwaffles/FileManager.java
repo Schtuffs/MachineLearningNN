@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.io.*;
 import java.util.Scanner;
 
+/**
+ * A class for reading and writing to files.
+ * @author Kyle Wagler
+ */
 public class FileManager {
 	/**
 	 * Writes the given data to a file

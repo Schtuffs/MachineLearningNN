@@ -2,12 +2,21 @@ package com.belgianwaffles;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Representation of a data point in the training data set.
+ * @author Kyle Wagler
+ */
 public class DataManager {
+
+	/**Point coordinates */
 	private double mX, mY, mZ;
+	/** Orientation of the data point representing a phone's orientation */
 	private int mOrientation;
 	
+	/** Invalid orientation code */
 	public static final int INVALID_ORIENTATION = 0; 
+	
+	/** Map of orientation codes to their names */
 	public static final Map<Integer, String> OrientationMap = new HashMap<>();
 	static {
 		DataManager.OrientationMap.put(DataManager.INVALID_ORIENTATION, "Invalid");
@@ -19,6 +28,9 @@ public class DataManager {
 		DataManager.OrientationMap.put(6, "Landscape right");
 	}
 	
+	/**
+	 * The default constructor
+	 */
 	public DataManager() {
 		this.mX = 0;
 		this.mY = 0;
@@ -26,6 +38,12 @@ public class DataManager {
 		this.mOrientation = DataManager.INVALID_ORIENTATION;
 	}
 	
+	/**
+	 * Constructor with coordinates only
+	 * @param x X-coordinate
+	 * @param y Y-coordinate
+	 * 	@param z Z-coordinate
+	 */
 	public DataManager(double x, double y, double z) {
 		if (-1 <= x && x <= 1) {
 			this.mX = x;
@@ -48,6 +66,13 @@ public class DataManager {
 		this.mOrientation = DataManager.INVALID_ORIENTATION;
 	}
 	
+	/**
+	 * Constructor with coordinates and orientation
+	 * @param x X-coordinate
+	 * @param y Y-coordinate
+	 * @param z Z-coordinate
+	 * @param orientation orientation code
+	 */
 	public DataManager(double x, double y, double z, int orientation) {
 		if (-1 <= x && x <= 1) {
 			this.mX = x;
@@ -80,7 +105,6 @@ public class DataManager {
  * Retrieves the X-coordinate of the data point.
  * @return the current X-coordinate as a double
  */
-
 	public double getX() {
 		return mX;
 	}
@@ -97,7 +121,6 @@ public class DataManager {
  * Retrieves the Z-coordinate of the data point.
  * @return the current Z-coordinate as a double
  */
-
 	public double getZ() {
 		return mZ;
 	}
@@ -106,7 +129,6 @@ public class DataManager {
  * Retrieves the orientation of the data point.
  * @return the current orientation as an integer
  */
-
 	public int getOrientation() {
 		return this.mOrientation;
 	}

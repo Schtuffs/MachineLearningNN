@@ -4,10 +4,30 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Main entry point class for the program
+ * @author Kyle Wagler
+ * @author Andrew Abrantes
+ * @author Dylan Glass
+ */
 public class Main {
+	/**
+	 * User input code for exiting the program.
+	 */
 	public static final int CODE_EXIT		= 0;
+	/**
+	 * User input code for invalid input.
+	 */
 	public static final int CODE_INVALID	=-1;
 
+		/**
+		 * Main entry point for the program. This program reads data from a file and classifies it using different classifiers. The classifiers used are the Nearest Neighbor classifier, the K-Nearest Neighbors classifier, and the AnotherClassifier.
+		 *
+		 * The program runs in an infinite loop until the user chooses to exit.
+		 * The user is first prompted to choose a classifier, and then to enter a filename to classify. The program then prints the classification of each data point in the file.
+		 * 
+		 * @param args the command line arguments as a string array.
+		 */
 	public static void main(String[] args) {
 		// Setup data structures
 		ArrayList<DataManager> trainingData = FileManager.read("trainingData.txt", true);
