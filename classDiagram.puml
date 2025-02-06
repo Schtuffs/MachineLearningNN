@@ -52,6 +52,5 @@ NNClassifier --> Classifier
 KNNClassifier --> Classifier
 Main -- Classifier
 Main -- FileManager
-Main -- DataManager
 Classifier -- DataManager
 @enduml
