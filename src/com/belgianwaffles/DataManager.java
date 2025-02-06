@@ -178,7 +178,13 @@ public class DataManager {
 	 */
 	@Override
 	public String toString() {
-		String ori = DataManager.OrientationMap.get(this.mOrientation);
+		String ori;
+		if (DataManager.OrientationMap.containsKey(this.mOrientation)) {
+			ori = DataManager.OrientationMap.get(this.mOrientation);
+		}
+		else {
+			ori = Integer.toString(this.mOrientation);
+		}
 		return this.mX+ "," + this.mY + "," + this.mZ + "," +this.mOrientation + "," + ori;
 	}
 }
